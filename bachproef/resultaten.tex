@@ -1,0 +1,32 @@
+\chapter{\IfLanguageName{dutch}{Resultaten}{Results}}%
+\label{ch:resultaten}
+
+Er wordt een grondige evaluatie gemaakt van de bevindingen. Hierbij wordt opgemerkt dat bij het onderzoeken van het netwerk de juiste resultaten worden verkregen. Bij het uitvoeren van de hostscanning wordt duidelijk waargenomen in figuur \ref{fig:Scan61} dat zowel een link-local adres als een global adres worden weergegeven. Het resultaat omvat dus zowel het link-local adres als het global adres. Bovendien bestaat er een scanmethode waarbij alleen de globale unicast-adressen op het scherm worden afgedrukt. Dit specifieke resultaat wordt getoond in figuur \ref{fig:Scan62}.
+
+
+\newline
+
+De Addr6-tool biedt een waardevol hulpmiddel om gedetailleerde statistieken van het IPv6-adres 2001:db8:acad:10::8 te bekijken. In figuur \ref{fig:StatisAddress} wordt een overzichtelijke weergave van deze statistieken gepresenteerd, waardoor een dieper inzicht ontstaat in de eigenschappen en kenmerken van het betreffende adres. Deze tool gaat verder dan alleen het verstrekken van statistieken en biedt ook de mogelijkheid om filterregels in te stellen.
+\newline
+
+Door gebruik te maken van de Addr6-tool kunnen filterregels worden geconfigureerd, waardoor het mogelijk is om alleen specifieke adressoorten te accepteren op het adres 2001:db8:acad:10::8. Dit betekent dat het netwerkbeheerders in staat stelt om nauwkeurige controle uit te oefenen over welke soorten verkeer worden toegestaan op dit specifieke IPv6-adres. Bovendien kunnen dezelfde principes worden toegepast op bepaalde adres scopes, waardoor een meer geavanceerd beheer van het IPv6-netwerk mogelijk wordt.
+
+\newline
+
+De uitgevoerde aanval met behulp van ICMPv6-foutpakketten heeft zich bewezen als een succesvolle poging. Met de specifieke tool was het mogelijk om een "Packet too big" bericht te sturen naar de Pfsense-router. Als reactie op dit bericht verzond de Pfsense-router een ICMPv6 Echo Request-bericht naar het opgegeven doeladres, namelijk het IP-adres van de Windows-server. Na exact 15 seconden werd het duidelijk dat de webserver, die op de Windows-server draait, niet langer toegankelijk was. De aanval bleek dus succesvol te zijn en de webserver herstelde niet automatisch zijn online functionaliteit. Om de webserver weer operationeel te maken, was het noodzakelijk om de Windows-server opnieuw op te starten.
+\newline
+
+Na het realiseren van de potentiële kwetsbaarheid van de webserver als gevolg van de succesvolle aanval, werd er besloten om een versterkte beveiligingsmaatregel te implementeren. In dit geval werd een firewallregel toegevoegd aan de Pfsense-router, met als doel het filteren van ICMPv6-foutberichten. Nadat deze firewallregel was toegepast, werd de aanval opnieuw uitgevoerd om te testen of de webserver nu weerstand kon bieden aan de eerdere aanval. Deze keer resulteerde de aanval echter niet in het uitvallen van de webserver en bleef deze succesvol functioneren.
+\newline
+
+De succesvolle werking van de webserver, zelfs na herhaalde pogingen tot aanval, wijst onmiskenbaar op de doeltreffendheid van de toegepaste firewallregel op de Pfsense-router. Het bewijs van de firewall's vermogen om ICMPv6-foutberichten te filteren en daarmee de aanvallen af te weren, toont aan dat de genomen maatregelen effectief zijn bij het versterken van de beveiliging van het netwerk.
+\bigskip
+\newline
+
+Bij het uitvoeren van de TCP-SYN-aanval werden interessante bevindingen waargenomen. Het viel op dat poort 80 van de Windows-server (2001:db8:acad:10::8) open was en toegankelijk was zoals geïllustreerd in figuur \ref{fig:Nmap1}. Vervolgens slaagde de aanval erin om de doelpoort te overstromen met maar liefst 10.000 verschillende IPv6-bronadressen. Wat deze aanval nog uitdagender maakte, was dat de gebruikte tool in staat was om de bronpoort en SEQ-nummers willekeurig te genereren, waardoor de complexiteit van het tegengaan van deze aanval toenam. Na de aanval bevestigde een Nmap-scan, te zien op figuur \ref{fig:Nmap2}, van poort 80 dat deze niet langer actief was en niet meer kon worden gebruikt.
+\newline
+
+Interessant genoeg blijkt dat als de aanval gericht is op een Ubuntu-systeem, deze kan worden afgeweerd door het toevoegen van een SYN-cookie. Nadat de systeemconfiguratie opnieuw was geladen, werd het Ubuntu-systeem opnieuw aangevallen en werd de aanval succesvol geblokkeerd. In het geval van de Windows-server ligt de situatie echter anders. Daar moet de aanval worden tegengehouden door middel van een specifieke firewallregel. Dit benadrukt de noodzaak van verschillende beveiligingsmaatregelen, afhankelijk van het specifieke besturingssysteem, om effectieve bescherming te bieden tegen TCP-SYN-aanvallen.
+\newline
+
+Door de uitvoering van de flooding attack gebaseerd op router advertisements, resulteerde dit in een volledige uitval van het netwerk. De servers moesten opnieuw opgestart worden. Zelfs na de herstart was er nog steeds geen nieuw netwerkverkeer. Om het netwerk weer operationeel te krijgen, moeten de servers teruggezet worden naar hun oude snapshots, zodat alles weer in de vorige staat is hersteld. Dit impliceert dat de aanval een aanzienlijke impact heeft gehad op het netwerk, aangezien het zelfs na een herstart niet kon worden opgelost. Het is mogelijk dat een fout in de uitvoering van de aanval ook heeft bijgedragen aan de netwerkuitval met deze omvang. Hoe dan ook, is het van cruciaal belang om inkomend verkeer te filteren. Op die manier kunnen firewall-regels of netwerkapparatuur worden gebruikt om inkomend verkeer van onbekende of verdachte bronnen te blokkeren. Hierdoor kunnen de "flood" pakketten worden gestopt voordat ze het beoogde doel bereiken.

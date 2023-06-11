@@ -1,0 +1,247 @@
+%===============================================================================
+% LaTeX sjabloon voor de bachelorproef toegepaste informatica aan HOGENT
+% Meer info op https://github.com/HoGentTIN/latex-hogent-report
+%===============================================================================
+
+\documentclass[dutch,dit,thesis]{hogentreport}
+
+% TODO:
+% - If necessary, replace the option `dit`' with your own department!
+%   Valid entries are dbo, dbt, dgz, dit, dlo, dog, dsa, soa
+% - If you write your thesis in English (remark: only possible after getting
+%   explicit approval!), remove the option "dutch," or replace with "english".
+
+\usepackage{lipsum} % For blind text, can be removed after adding actual content
+\usepackage{listings}
+\lstdefinestyle{PowerShellStyle}{
+    language=PowerShell,
+    basicstyle=\small\ttfamily,
+    keywordstyle=\bfseries\color{blue},
+    stringstyle=\color{orange},
+    commentstyle=\color{green},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt,
+    frame=single,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4
+}
+\lstdefinelanguage{PowerShell}{
+    morekeywords={Add-Content, Add-History, Add-Member, Add-PSSnapin, Clear-Content, Clear-History, Clear-Item, Clear-ItemProperty, Clear-Variable, Compare-Object, Complete-Transaction, Connect-PSSession, ConvertFrom-Json, Convert-Path, ConvertTo-Html, ConvertTo-Json, Copy-Item, Copy-ItemProperty, Debug-Process, Disable-PSBreakpoint, Disable-PSRemoting, Disable-PSSessionConfiguration, Enable-PSBreakpoint, Enable-PSRemoting, Enable-PSSessionConfiguration, Enter-PSSession, Exit-PSSession, Export-Alias, Export-Csv, Export-PSSession, ForEach-Object, Format-Table, Get-Acl, Get-Alias, Get-AuthenticodeSignature, Get-ChildItem, Get-Command, Get-ComputerInfo, Get-Content, Get-Credential, Get-Culture, Get-Date, Get-Event, Get-EventLog, Get-ExecutionPolicy, Get-History, Get-Host, Get-Item, Get-ItemProperty, Get-Job, Get-Location, Get-Member, Get-Module, Get-NetAdapter, Get-NetIPAddress, Get-NetIPConfiguration, Get-Process, Get-PSBreakpoint, Get-PSDrive, Get-PSProvider, Get-PSSession, Get-PSSessionConfiguration, Get-PSSnapin, Get-Service, Get-TimeZone, Get-Transaction, Get-UICulture, Get-Unique, Get-Variable, Get-WinEvent, Get-WmiObject, Group-Object, Import-Alias, Import-Csv, Import-PSSession, Invoke-Command, Invoke-Expression, Invoke-History, Invoke-Item, Invoke-RestMethod, Invoke-WebRequest, Join-Path, Measure-Command, Measure-Object, Move-Item, New-Event, New-Item, New-ItemProperty, New-Object, New-PSDrive, New-Service, New-TimeSpan, New-Variable, Out-Default, Out-File, Out-GridView, Out-Host, Out-Null, Out-Printer, Out-String, Pop-Location, Push-Location, Read-Host, Remove-Acl, Remove-Event, Remove-Item, Remove-ItemProperty, Remove-Job, Remove-Module, Remove-PSBreakpoint, Remove-PSDrive, Remove-PSProvider, Remove-PSSession, Remove-PSSnapin, Remove-Service, Remove-Variable, Rename-Item, Rename-ItemProperty, Resolve-Path, Restart-Service, Resume-Service, Select-Object, Select-String, Set-Acl, Set-Alias, Set-AuthenticodeSignature, Set-Content, Set-Date, Set-ExecutionPolicy, Set-Item, Set-ItemProperty, Set-Location, Set-NetIPAddress, Set-Service, Set-TimeZone, Set-Variable, Sort-Object, Split-Path, Start-Job, Start-Process, Start-Service, Start-Sleep, Start-Transaction, Stop-Computer, Stop-Job, Stop-Process, Stop-Service, Stop-Transcript, Suspend-Service, Tee-Object, Test-Connection, Test-Path, Update-Help, Update-TypeData, Where-Object, Write-Debug, Write-Error, Write-Host, Write-Output, Write-Progress, Write-Verbose, Write-Warning},
+    sensitive=true,
+    morecomment=[l]}
+    
+\lstdefinelanguage{LinuxCommands}{
+    % Definieer de kleuren voor de verschillende elementen
+    keywordstyle=\color{blue}\bfseries,  % Sleutelwoorden (bijv. cd, ls)
+    commentstyle=\color{gray}\textit,    % Opmerkingen (beginnend met #)
+    stringstyle=\color{red},             % Strings (bijv. "Hello World")
+    % Specificeer de lijst met sleutelwoorden
+    keywords={cd, ls, pwd, echo, cat, rm, mv, cp},
+    % Schakel in dat spaties in strings behouden blijven
+    keepspaces=true,
+    % Stel de basisinstellingen in
+    basicstyle=\ttfamily\small,         % Het lettertype en de grootte
+    columns=fullflexible,               % De breedte van de tekens
+    % Voeg een lijnnummers toe aan de code
+    numbers=left,
+    numbersep=5pt,
+    numberstyle=\tiny\color{gray},
+    % Voeg een lijst met opties toe aan de stijl
+    xleftmargin=0.5cm,
+    frame=tb,
+    framesep=4pt,
+    framerule=0pt,
+    % Stel de tabgrootte in op 4 tekens
+    tabsize=4,
+    % Schakel in dat regelonderbrekingen toegestaan zijn
+    breaklines=true,
+    breakatwhitespace=true,
+}
+\lstdefinestyle{customStyleBashDark}{
+    language=Bash,
+    numbers=left,%position of line numbers (left/right/none, i.e. no line numbers)
+    basicstyle=\footnotesize\ttfamily\color[RGB]{255,255,255},%font size/family/etc. for source (e.g. basicstyle=\ttfamily\small)
+    numberstyle=\color[RGB]{0,0,0},%style used for line-numbers
+    backgroundcolor=\color[RGB]{33,36,33},%colour for the background. External color or xcolor package needed.
+    commentstyle=\itshape\color[RGB]{153,153,153},%style of comments in source language.
+    keywordstyle=\bfseries\color[RGB]{143,217,68},%style of keywords in source language (e.g. keywordstyle=\color{red})
+    identifierstyle=\color[RGB]{101,197,222},
+    stringstyle=\color[RGB]{236,118,0},%style of strings in source language
+    belowcaptionskip=1\baselineskip,%is the vertical space respectively above or below each caption
+    breaklines=true,%automatic line-breaking
+    frame=single,%showing frame outside code (none/leftline/topline/bottomline/lines/single/shadowbox)
+    xleftmargin=\parindent,
+    showstringspaces=false,
+    captionpos=b,%position of caption (t/b)
+    showspaces=false,%emphasize spaces in code (true/false)
+    showtabs=false,%emphasize tabulators in code (true/false)
+    tabsize=4,%default tabsize
+    lineskip=0.5em,
+    postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{VioletBlue}\hookrightarrow\space}}
+}
+
+%% Pictures to include in the text can be put in the graphics/ folder
+\graphicspath{{graphics/}}
+
+%% For source code highlighting, requires pygments to be installed
+%% Compile with the -shell-escape flag!
+\usepackage[section]{minted}
+\usemintedstyle{solarized-light}
+\definecolor{bg}{RGB}{253,246,227} %% Set the background color of the codeframe
+
+%% Change this line to edit the line numbering style:
+\renewcommand{\theFancyVerbLine}{\ttfamily\scriptsize\arabic{FancyVerbLine}}
+
+%% Macro definition to load external java source files with \javacode{filename}:
+\newmintedfile[javacode]{java}{
+    bgcolor=bg,
+    fontfamily=tt,
+    linenos=true,
+    numberblanklines=true,
+    numbersep=5pt,
+    gobble=0,
+    framesep=2mm,
+    funcnamehighlighting=true,
+    tabsize=4,
+    obeytabs=false,
+    breaklines=true,
+    mathescape=false
+    samepage=false,
+    showspaces=false,
+    showtabs =false,
+    texcl=false,
+}
+
+% Other packages not already included can be imported here
+
+
+
+%%---------- Document metadata -------------------------------------------------
+% TODO: Replace this with your own information
+\author{Lander De Ghein}
+\supervisor{Mevr. K. Van Driessche}
+\cosupervisor{Mr. J. Boutens}
+\title[]%
+    {De kwetsbaarheden van een IPv6- \newline netwerk en de mitigatie ervan in \newline bedrijven.}
+\academicyear{\advance\year by -1 \the\year--\advance\year by 1 \the\year}
+\examperiod{1}
+\degreesought{\IfLanguageName{dutch}{Professionele bachelor in de toegepaste informatica}{Bachelor of applied computer science}}
+\partialthesis{false} %% To display 'in partial fulfilment'
+%\institution{Internshipcompany BVBA.}
+
+%% Add global exceptions to the hyphenation here
+\hyphenation{back-slash}
+
+%% The bibliography (style and settings are  found in hogentthesis.cls)
+\addbibresource{bachproef.bib}            %% Bibliography file
+\addbibresource{../voorstel/voorstel.bib} %% Bibliography research proposal
+\defbibheading{bibempty}{}
+
+%% Prevent empty pages for right-handed chapter starts in twoside mode
+\renewcommand{\cleardoublepage}{\clearpage}
+
+\renewcommand{\arraystretch}{1.2}
+
+%% Content starts here.
+\begin{document}
+
+%---------- Front matter -------------------------------------------------------
+
+\frontmatter
+
+\hypersetup{pageanchor=false} %% Disable page numbering references
+%% Render a Dutch outer title page if the main language is English
+\IfLanguageName{english}{%
+    %% If necessary, information can be changed here
+    \degreesought{Professionele Bachelor toegepaste informatica}%
+    \begin{otherlanguage}{dutch}%
+       \maketitle%
+    \end{otherlanguage}%
+}{}
+
+%% Generates title page content
+\maketitle
+\hypersetup{pageanchor=true}
+
+\input{voorwoord}
+\input{samenvatting}
+
+%---------- Inhoud, lijst figuren, ... -----------------------------------------
+
+\tableofcontents
+
+% In a list of figures, the complete caption will be included. To prevent this,
+% ALWAYS add a short description in the caption!
+%
+%  \caption[short description]{elaborate description}
+%
+% If you do, only the short description will be used in the list of figures
+
+\listoffigures
+
+% If you included tables and/or source code listings, uncomment the appropriate
+% lines.
+%\listoftables
+%\listoflistings
+
+% Als je een lijst van afkortingen of termen wil toevoegen, dan hoort die
+% hier thuis. Gebruik bijvoorbeeld de ``glossaries'' package.
+% https://www.overleaf.com/learn/latex/Glossaries
+
+%---------- Kern ---------------------------------------------------------------
+
+\mainmatter{}
+
+% De eerste hoofdstukken van een bachelorproef zijn meestal een inleiding op
+% het onderwerp, literatuurstudie en verantwoording methodologie.
+% Aarzel niet om een meer beschrijvende titel aan deze hoofdstukken te geven of
+% om bijvoorbeeld de inleiding en/of stand van zaken over meerdere hoofdstukken
+% te verspreiden!
+
+\input{inleiding}
+\input{standvanzaken}
+\input{methodologie}
+\input{resultaten}
+
+% Voeg hier je eigen hoofdstukken toe die de ``corpus'' van je bachelorproef
+% vormen. De structuur en titels hangen af van je eigen onderzoek. Je kan bv.
+% elke fase in je onderzoek in een apart hoofdstuk bespreken.
+
+%\input{...}
+%\input{...}
+%...
+
+\input{conclusie}
+
+%---------- Bijlagen -----------------------------------------------------------
+
+\appendix
+
+\chapter{Onderzoeksvoorstel}
+
+Het onderwerp van deze bachelorproef is gebaseerd op een onderzoeksvoorstel dat vooraf werd beoordeeld door de promotor. Dat voorstel is opgenomen in deze bijlage.
+
+%% TODO: 
+%\section*{Samenvatting}
+
+% Kopieer en plak hier de samenvatting (abstract) van je onderzoeksvoorstel.
+
+% Verwijzing naar het bestand met de inhoud van het onderzoeksvoorstel
+\input{../voorstel/voorstel-inhoud}
+
+%%---------- Andere bijlagen --------------------------------------------------
+% TODO: Voeg hier eventuele andere bijlagen toe. Bv. als je deze BP voor de
+% tweede keer indient, een overzicht van de verbeteringen t.o.v. het origineel.
+%\input{...}
+
+%%---------- Backmatter, referentielijst ---------------------------------------
+
+\backmatter{}
+
+\setlength\bibitemsep{2pt} %% Add Some space between the bibliograpy entries
+\printbibliography[heading=bibintoc]
+
+\end{document}

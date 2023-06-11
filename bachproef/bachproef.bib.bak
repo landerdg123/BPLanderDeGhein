@@ -1,0 +1,178 @@
+% Encoding: UTF-8
+@inproceedings{bilski2011ipv4,
+    title={From IPv4 to IPv6--data security in the transition phase},
+    author={Bilski, Tomasz},
+    booktitle={Proc. 7th Int. Conf. Netw. Serv. ICNS 2011},
+    pages={66--72},
+    year={2011}
+}
+
+
+@book{hagen2006ipv6,
+    title={IPv6 essentials},
+    author={Hagen, Silvia},
+    year={2006},
+    publisher={" O'Reilly Media, Inc."}
+}
+
+@article{rajamohandesign,
+    title={Design And Configuration Of Static Network Address Translation Techniques Method Using Cisco Packet Tracer Tool},
+    author={Rajamohan Parthasarathy, Ms and Ayyappan, Preethy}
+}
+
+@inproceedings{deering2000ipv6,
+    title={IPv6: Why, What, When, How?},
+    author={Deering, Steve},
+    booktitle={NANOG19 Meeting, June},
+    year={2000}
+}
+
+@article{andress2005ipv6,
+    title={IPv6: the next internet protocol},
+    author={Andress, J},
+    journal={Login},
+    volume={30},
+    number={2},
+    pages={21--28},
+    year={2005}
+}
+
+@article{loshin2004ipv6,
+    title={IPv6: Theory, protocol, and practice},
+    author={Loshin, Peter},
+    year={2004},
+    publisher={Elsevier}
+}
+
+
+@techreport{hoffman2006tao,
+    title={The Tao of IETF-A Novice's Guide to the Internet Engineering Task Force},
+    author={Hoffman, Paul and Harris, Susan},
+    year={2006}
+}
+
+@INPROCEEDINGS{1619968,
+    author={Vives, A. and Palet, J.},
+    booktitle={2005 Symposium on Applications and the Internet Workshops (SAINT 2005 Workshops)}, 
+    title={IPv6 Distributed Security: Problem Statement}, 
+    year={2005},
+    volume={},
+    number={},
+    pages={18-21},
+    doi={10.1109/SAINTW.2005.1619968}}
+
+@article{DURDAGI20105285,
+    title = {IPV4/IPV6 security and threat comparisons},
+    journal = {Procedia - Social and Behavioral Sciences},
+    volume = {2},
+    number = {2},
+    pages = {5285-5291},
+    year = {2010},
+    note = {Innovation and Creativity in Education},
+    issn = {1877-0428},
+    doi = {https://doi.org/10.1016/j.sbspro.2010.03.862},
+    url = {https://www.sciencedirect.com/science/article/pii/S187704281000902X},
+    author = {Emre Durdağı and Ali Buldu},
+    keywords = {IPv6, IPv4, IP security, Ipv6 security performance, IP threats, IP attacks, security comparision}
+    
+}
+
+@inproceedings{gao2014detecting,
+    title={Detecting DOS/DDOS attacks under Ipv6},
+    author={Gao, Jian and Chen, Yingjun},
+    booktitle={Proceedings of the 2012 International Conference on Cybernetics and Informatics},
+    pages={847--855},
+    year={2014},
+    organization={Springer}
+}
+
+
+@techreport{arkko2005secure,
+    title={Secure neighbor discovery (SEND)},
+    author={Arkko, Jari and Kempf, James and Zill, Brian and Nikander, Pekka},
+    year={2005}
+}
+
+@techreport{nikander2004ipv6,
+    title={IPv6 neighbor discovery (ND) trust models and threats},
+    author={Nikander, Pekka and Kempf, James and Nordmark, Erik},
+    year={2004}
+}
+
+@inproceedings{ullrich2014ipv6,
+    title={$\{$IPv6$\}$ Security: Attacks and Countermeasures in a Nutshell},
+    author={Ullrich, Johanna and Krombholz, Katharina and Hobel, Heidelinde and Dabrowski, Adrian and Weippl, Edgar},
+    booktitle={8th USENIX Workshop on Offensive Technologies (WOOT 14)},
+    year={2014}
+}
+
+@article{sotillo2006ipv6,
+    title={Ipv6 security issues},
+    author={Sotillo, Samuel},
+    journal={Scanning},
+    pages={4},
+    year={2006}
+}
+
+@Book{boek1,
+    author    = {Popoviciu, Ciprian P. and Levy-Abegnoli, Eric and Grossetete, Patrick},
+    publisher = {Cisco Press},
+    title     = {Deploying IPv6 Networks (Networking Technology)},
+    year      = {2006},
+    isbn      = {9781587052101},
+    pages     = {672},
+}
+
+@INPROCEEDINGS{7726976,
+    author={Sumathi, P. and Patel, Saroj and Prabhakaran},
+    booktitle={2016 10th International Conference on Intelligent Systems and Control (ISCO)}, 
+    title={Secure Neighbor Discovery (SEND) Protocol challenges and approaches}, 
+    year={2016},
+    volume={},
+    number={},
+    pages={1-6},
+    doi={10.1109/ISCO.2016.7726976}}
+
+@INPROCEEDINGS{1333418,
+    author={Szigeti, S. and Risztics, P.},
+    booktitle={Proceedings. 30th Euromicro Conference, 2004.}, 
+    title={Will IPv6 bring better security?}, 
+    year={2004},
+    volume={},
+    number={},
+    pages={532-537},
+    doi={10.1109/EURMIC.2004.1333418}}
+
+
+@misc{conta1998rfc2463,
+    title={RFC2463: Internet Control Message Protocol (ICMPv6) for the Internet Protocol Version 6 (IPv6) Specification},
+    author={Conta, A and Deering, S},
+    year={1998},
+    publisher={RFC Editor}
+}
+
+@misc{vyncke2009ipv6,
+    title={IPv6 Internet Security for Your Network},
+    author={Vyncke, Eric and Hogg, Scott},
+    year={2009},
+    publisher={Cisco Press. http://www. ciscopress. com/articles/article. asp}
+}
+
+@article{morbitzer2013tcp,
+    title={TCP idle scans in IPv6},
+    author={Morbitzer, Mathias},
+    journal={Master's thesis, Radboud University Nijmegen, The Netherlands},
+    year={2013}
+}
+
+
+@article{eddy2006defenses,
+    title={Defenses against TCP SYN flooding attacks},
+    author={Eddy, Wesley M},
+    journal={The Internet Protocol Journal},
+    volume={9},
+    number={4},
+    pages={2--16},
+    year={2006},
+    publisher={Cisco}
+}

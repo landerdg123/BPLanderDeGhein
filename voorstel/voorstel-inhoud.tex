@@ -1,0 +1,81 @@
+%---------- Inleiding ---------------------------------------------------------
+
+\section{Introductie}%
+\label{sec:introductie}
+
+Het Internet protocol (IP) is het meest gebruikte protocol. Dit zorgt er op zijn beurt voor dat de beveiliging ervan een topprioriteit is. De beveiliging gebeurt vooral door de Internet Engineering Task Force (IETF). Dit is de organisatie verantwoordelijk voor de IP-standaarden. Bij het uitrollen van IPv4 hadden ze niet geanticipeerd op de exponentiële groei van het internet. Dit zorgde ervoor dat nood was aan een opvolger van IPv4. Hieruit kwam IPv6. IPv6 was het natuurlijke gevolg van de evolutie van het internet. Hoewel de nood aan IPv6 groot was, gebruikt nog niet iedereen het protocol. De wereld bevindt zich nu in een transitie fase. De vraag is niet of iedereen IPv6 gaat gebruiken maar wanneer. Nieuwe protocollen brengen natuurlijk ook nieuwe kwetsbaarheden mee die vaak nog onbekend zijn bij IT’ers. Veel van IPv6-implementaties zijn nog niet in de praktijk getest.  Hierdoor heeft IPv6 wel de aandacht getrokken van mogelijke hackers. Daarom is het belangrijk dat bedrijven die overstappen naar een Ipv6-netwerk goed weten wat ze moeten doen voor ze dit implementeren. Daarom zullen in deze bachelorproef, volgende onderzoeksvragen onderzocht worden:
+\begin{itemize}
+  \item Wat zijn de veelvoorkomende beveiligingsproblemen in verband met IPv6?
+	\item Wat zijn de hoofdoorzaken van deze kwetsbaarheden? 
+ \item 	Wat is de impact van deze kwetsbaarheden op de netwerkbeveiliging?
+\item	Welke mitigatietechnieken en aanbevolen procedures zijn beschikbaar om deze kwetsbaarheden te beperken?
+ \item	Hoe effectief zijn deze mitigatietechnieken en -praktijken bij het beperken van {beveiligingskwetsbaarheden} van IPv6?
+\end{itemize}
+
+In deze bachelor proef wordt er voorgesteld om de veel voorkomende beveiligingskwetsbaarheden in verband met IPv6 te onderzoeken en de effectiviteit van verschillende mitigatietechnieken te evalueren. Het onderzoek zal zich richten op het identificeren van de onderliggende oorzaken van deze kwetsbaarheden en het onderzoeken van de impact die ze hebben op de netwerkbeveiliging. Er wordt ook de beschikbaarheid en effectiviteit van tools en best practices voor het beperken van deze kwetsbaarheden onderzocht worden. De bevindingen van het onderzoek zullen nuttig zijn voor netwerkbeheerders en beveiligingsprofessionals bij het verbeteren van de beveiliging van hun netwerken met behulp van IPv6.
+
+%---------- Stand van zaken ---------------------------------------------------
+
+\section{State-of-the-art}%
+\label{sec:state-of-the-art}
+
+Het implementeren van IPv6 blijft hoognodig. Hoewel NAT tijdelijk het probleem heeft opgelost voor het tekort aan IP-adressen is het niet adequaat. Deering verwijst hierbij naar onderstaande problemen \autocite{deering2000ipv6}:
+
+\begin{itemize}
+    \item	NAT zorgt voor problemen bij de meeste huidige IP-multicast- en IP-mobiliteit Protocollen 
+    \item	NAT zorgt voor problemen bij veel bestaande applicaties  
+    \item	NAT beperkt de markt voor nieuwe toepassingen en diensten
+    \item	NAT brengt de prestaties, robuustheid, veiligheid en beheerbaarheid van het internet naar beneden
+\end{itemize}
+Men kan zich de vraag stellen “Waarom verbeteren we niet gewoon de gebreken van NAT?”. \textcite{deering2000ipv6} heeft een antwoord hiervoor. Hij schrijft dat dit alleen maar de complexiteit zal verhogen. Bovendien komen er extra gebreken bovenop. Het implementeren van IPv6 zal ervoor zorgen dat er nog veel andere veranderingen nodig zullen zijn tijdens de groei van het internet.
+
+IP version 6 (IPv6) is de volgende generatie van het internetprotocol. Dit wil niet zeggen dat het een vervolg is op IPv4. Het is een volledig nieuw protocol. In tegenstelling tot het 32-bit adres van IPv4 is het IPv6 adres 128 bits lang. Hierdoor zijn er in theorie 3 biljoen adressen per persoon op de aarde. \textcite{andress2005ipv6} legt in zijn artikel uit dat de grote marge voor IP-adressen niet zo bedoeld is. Veel van de adresbits worden minder efficiënt gebruikt om het configureren van adressen te vergemakkelijken. Er zijn zeker nog genoeg adressen vrij voor gebruik in de toekomst \autocite{andress2005ipv6}. In de volgende sectie zal er besproken worden in welke gebieden de beveiliging van IPv6 beter kan.
+
+Als je kijkt vanuit een beveiligingstandpunt is IPv6 een vooruitgang op het oude IPv4-protocol. Ondanks alle verbeteringen blijft IPv6 ver van veilig \autocite{sotillo2006ipv6}.
+\textcite{sotillo2006ipv6} kaart in zijn paper het gevaar aan van header manipulation. De implementatie van extension headers en IPsec zorgen ervoor dat de vele header manipulation aanvallen worden tegengehouden. Het feit dat alle extension headers door alle stacks moeten verwerkt worden, kan zorgen voor problemen. Een lange keten van extension headers kan gebruikt worden om bepaalde knooppunten te overweldigen of het maskeren van een aanval. \textcite{boek1} legt in zijn boek uit dat de aanbevolen procedures aanraden het verkeer te filteren met niet ondersteunende diensten. 
+
+Door het gebruik van 64 bits kan het scannen van een volledig IPv6 segment tot 580 miljard jaar duren \autocite{boek1}. Het gebruik van de langere adres ruimte wil dus niet zeggen dat IPv6 veilig is. Zo kan het netwerk nog altijd slachtoffer zijn van een flooding attack. 
+
+Nieuwe features als multicast adressen zorgen voor problemen \autocite{1619968}. Nieuwe types ICMPv6-berichten en afhankelijkheid van multicast-adressen in IPv6 kan nieuwe manieren van misbruik bij flooding attacks bieden. ICMPv6-berichten moeten altijd toegelaten worden in een netwerk omdat ze nodig zijn voor een werkend netwerk \autocite{DURDAGI20105285}. Dit zorgt ervoor dat er ook error notificatie berichten kunnen verzonden worden naar multicast-adressen in het netwerk. Die kunnen misbruikt worden door hackers. Hackers zenden dan een gepast pakket naar een multicast-adres zodat ze meerdere berichten gericht op een slachtoffer kunnen sturen.
+Een flooding attack kan ook plaatsvinden via het transmission control protocol (TCP) \autocite{gao2014detecting}. Deze aanval maakt gebruik van het  three way handshake mechanisme van het protocol. \textcite{gao2014detecting} leggen in hun paper uit hoe zo een aanval tot stand komt. Het aanvallend toestel kan een reeks SYN-verzoeken met een vervalst scource adres sturen naar een slachtoffer. Het slachtoffer stuurt dan een SYN/ACK als antwoord. Het slachtoffer moet wachten totdat een ACK terugkomt om de sessie-instelling te voltooien. Vanwege het valse scource adres is er geen ACK-retour. Dit kan ervoor zorgen dat de verbindingswachtrijen en de geheugenbuffer vol raken, waardoor de service voor de legitieme TCP-gebruikers wordt geweigerd \autocite{gao2014detecting}. Een gekende mitigatie om dit tegen te gaan bestaat uit het implementeren van een TCP flood detection module.
+
+Een ander kwetsbaar protocol bij IPv6 is het Neighbor Discovery (ND) protocol.  ND is een mechanisme dat wordt gebruikt door toestellen in een netwerk om de lokale topologie te leren \autocite{nikander2004ipv6}. Dit gaat van de IP to MAC mappings tot de IP- en MAC-adressen van de routers die aanwezig zijn in het lokale netwerk. Elk toestel in het netwerk heeft de mogelijkheid zichzelf bekend te maken als een router \autocite{ullrich2014ipv6}. Op die manier kan een router aankondiging gespoofed worden. Zo kan de hacker bijvoorbeeld de routers lifetime omzetten naar 0. De oplossing om ND-berichten meer te beveiligen is het implementeren van Secure Neighbor Discovery (SEND). SEND introduceert nieuwe opties die dit mogelijk maken \autocite{arkko2005secure}. \textcite{7726976} bevestigt in zijn paper dat SEND een sterk mechanisme is om de IPv6-link-local communicatie te beveiligen. Hoewel SEND wordt beschouwd als een veelbelovende oplossing om het ND-protocol te beschermen, is de implementatie niet eenvoudig en dus uitdagend.
+Er is nog steeds de mogelijkheid om te spoofen in een IPv6-netwerk \autocite{1333418}. Neighbor discovery zorgt ervoor dat spoofen alleen mogelijk is, bij toestellen in hetzelfde netwerk segment. Dit geld niet voor een 6to4 transitie netwerk. Door dat dit netwerk gebruikt maakt van het inkapselen van een protocol kan dit wel zorgen voor andere problemen zoals adres spoofing. Als dit het geval is wordt er een spoofed adres gebruikt om het interne netwerkpakket te maskeren \autocite{1333418}.
+
+Mobiliteit is een nieuwe feature in IPv6 die nog helemaal niet bestond in IPv4. Mobiliteit is een complexe functie die veel bezorgdheden wekt op vlak van beveiliging \autocite{sotillo2006ipv6}. Mobiliteit gebruikt twee soorten adressen, een echt adres en het mobiele adres. Het eerste adres is een typisch IPv6-adres. Het tweede adres is een tijdelijk adres in de IP-header. Het is de tijdelijke component van een mobiel adres dat kan blootgesteld worden aan spoofing-aanvallen. Netwerkbeheerders moeten bewust zijn van de complexiteit van mobiliteit. Het is hun taak om de speciale veiligheidsmaatregelen toe te passen.
+
+
+
+% Voor literatuurverwijzingen zijn er twee belangrijke commando's:
+% \autocite{KEY} => (Auteur, jaartal) Gebruik dit als de naam van de auteur
+%   geen onderdeel is van de zin.
+% \textcite{KEY} => Auteur (jaartal)  Gebruik dit als de auteursnaam wel een
+%   functie heeft in de zin (bv. ``Uit onderzoek door Doll & Hill (1954) bleek
+%   ...'')
+
+
+%---------- Methodologie ------------------------------------------------------
+\section{Methodologie}%
+\label{sec:methodologie}
+Om de effectiviteit van verschillende mitigatietechnieken te evalueren, zullen er een reeks experimenten uitgevoerd worden met behulp van een laboratoriumnetwerkopstelling. Er zullen verschillende beveiligingskwetsbaarheden in het netwerk geïntroduceerd worden en de effectiviteit van verschillende mitigatietechnieken zal geëvalueerd bij het voorkomen of beperken van deze kwetsbaarheden. Er zullen ook bestaande hulpprogramma's en best practices voor het beperken van IPv6-beveiligingskwetsbaarheden beoordeeld worden en de effectiviteit ervan evalueren via de experimenten.
+Er zal een laboratoriumnetwerkopstelling opgezet worden. Deze zal kleinschalig zijn en bestaan uit een router, 2 computers en een switch. In dit netwerk kunnen er dan tools gebruikt worden. De tools die gebruikt zullen worden komen uit de toolkit  IPv6ToolKit die je kan vinden op https://github.com/fgont/ipv6toolkit. \\
+Deze toolkit bevat meerdere tools en kan voor veel dingen gebruikt worden. In dit onderzoek worden de volgende tools gebruikt:
+
+\begin{itemize}
+    \item	addr6: een IPv6 address analyse en manipulatie tool.
+    \item	icmp6: een tool om aanvallen gebaseerd op ICMPv6 error berichten uit te voeren.
+    \item	na6: een tool om kwaadwillige  Neighbor Advertisement berichten te verzenden.
+    \item	ni6: een tool om kwaadwillige ICMPv6 Node Information berichten te verzenden.
+    \item	ns6: een tool om kwaadwillige Neighbor Solicitation berichten te verzenden.
+    \item	ra6: een tool om kwaadwillige Router Advertisement berichten te verzenden.
+    \item	rd6: een tool om kwaadwillige ICMPv6 Redirect berichten te verzenden.
+    \item	rs6: een tool om kwaadwillige Router Solicitation berichten te verzenden.
+    \item	scan6: een IPv6 address scanning tool.
+    \item	tcp6: een tool om kwaadwillige TCP segments uit te sturen en verschillende TCP-based attacks los te laten.
+\end{itemize}
+De tool zal systematisch worden losgelaten in het netwerk. Zo wordt elk deel van de tool gebruikt. Daarna wordt de analyze uitgevoerd hoe het scannen of de aanval werkt en wat de impact is. De impact wordt geanalyseerd op de grootte van de schade. Er wordt gekeken en vergeleken hoelang de downtime is van het netwerk en hoe snel het kan opgelost worden. Daarna worden alle gekende mitigatie technieken toegepast in het netwerk. Zo wordt de tool opnieuw gebruikt en de impact vergeleken. Zo kan er vergeleken worden of de aanval effectief doorgaat of vertraagd wordt.
+
+%---------- Verwachte resultaten ----------------------------------------------
+\section{Verwacht resultaat}%
+\label{sec:verwachte_resultaten}
+ Het onderzoek zal naar verwachting waardevolle inzichten opleveren in de veelvoorkomende beveiligingskwetsbaarheden in verband met IPv6 en hun impact op de netwerkbeveiliging. Verwachtingen zijn de hoofdoorzaken van deze kwetsbaarheden te identificeren en de effectiviteit van verschillende mitigatietechnieken te evalueren. Het onderzoek zal naar verwachting ook een uitgebreid overzicht bieden van een beschikbare tool en best practices voor het beperken van IPv6-beveiligingskwetsbaarheden en hun effectiviteit bij het verbeteren van de netwerkbeveiliging.
